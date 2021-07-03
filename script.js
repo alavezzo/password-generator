@@ -39,6 +39,7 @@ var getLowercase = function() {
   }
 }
 
+
 var getNumeric = function() {
   
   var numeric = confirm("Numeric Values included? Select 'Ok' for yes.");
@@ -65,18 +66,35 @@ var getSpecialCharacters = function() {
   }
 }
 
+
+var characterTypes = {
+  uppercase: '',
+  lowercase: '',
+  numeric: '',
+  specialCharacters: '',
+getCharacterTypes: function(){
+  this.uppercase = getUppercase(),
+  this.lowercase = getLowercase(),
+  this.numeric = getNumeric(),
+  this.specialCharacters = getSpecialCharacters()
+}
+}
+
+  
+  
+
 // Write password to the #password input
 
 function writePassword() {
   var length = getPasswordLength();
-  var uppercase = getUppercase();
-  console.log(uppercase);
-  var lowercase = getLowercase();
-  console.log(lowercase);
-  var numeric = getNumeric();
-  console.log(numeric);
-  var specialCharacters = getSpecialCharacters();
-  console.log(specialCharacters);
+  alert('Please Confirm Character Types');
+  characterTypes.getCharacterTypes();
+  if (!characterTypes.uppercase && !characterTypes.lowercase && !characterTypes.numeric && !characterTypes.specialCharacters) {
+      alert("At least one character type must be selected to proceed! Please try again.")
+  } 
+
+  console.log(characterTypes.uppercase);
+
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
