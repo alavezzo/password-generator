@@ -66,6 +66,79 @@ var getSpecialCharacters = function() {
   }
 }
 
+var ensureCharacterType = function() {
+  alert('Please Confirm Character Types');
+  characterTypes.getCharacterTypes();
+  if (!characterTypes.uppercase && !characterTypes.lowercase && !characterTypes.numeric && !characterTypes.specialCharacters) {
+      alert("At least one character type must be selected to proceed! Please try again.")
+      characterTypes.getCharacterTypes();
+  } 
+}
+
+var randomNumber = function(min, max) {
+  var value = Math.floor((Math.random() * (max-min+1)) + min);
+  return value;
+}
+
+var randomSet = function() {
+  var max = characterSetsList.length - 1;
+  return characterSetsList[randomNumber(0, max)];
+}
+
+var randomCharacter = function(set) {
+  setLength = set.length -1;
+  return set[randomNumber(0,setLength)];
+}
+
+var randomSetAndCharacter = function() {
+  set = randomSet();
+  setLength = set.length - 1
+  return set[randomNumber(0, setLength)]
+}
+
+var generatePassword = function(length) {
+  password = ''
+
+  for (i=0;i<length;i++) {
+    if (characterTypes.uppercase && !characterTypes.lowercase && !characterTypes.numeric && !characterTypes.specialCharacters) {
+      uppercaseLetter = randomCharacter(characterSets.alphabet).toUpperCase();
+      password = password + uppercaseLetter;
+    }
+    else if (!characterTypes.uppercase && characterTypes.lowercase && !characterTypes.numeric && !characterTypes.specialCharacters) {
+      lowercaseLetter = randomCharacter(characterSets.alphabet);
+      password = password + lowercaseLetter;
+    }
+    else if (!characterTypes.uppercase && !characterTypes.lowercase && characterTypes.numeric && !characterTypes.specialCharacters) {
+      numericCharacter = randomCharacter(characterSets.numbers);
+      password = password + numericCharacter;
+    }
+    else if (!characterTypes.uppercase && !characterTypes.lowercase && !characterTypes.numeric && characterTypes.specialCharacters) {
+      specialCharacter = randomCharacter(characterSets.specialCharacters);
+      password = password + specialCharacter;
+    }
+    else if (characterTypes.uppercase && characterTypes.lowercase && characterTypes.numeric && characterTypes.specialCharacters) {
+      random.getRandomSetAndCharacter();
+      console.log(random.setAndCharacter);
+    }
+
+  }
+  return password
+}
+
+// Write password to the #password input
+
+function writePassword() {
+  var length = getPasswordLength();
+  length = parseInt(length);
+  ensureCharacterType();
+  var password = generatePassword(length);
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+
+// Objects
 var characterTypes = {
   uppercase: '',
   lowercase: '',
@@ -87,51 +160,18 @@ var characterSets = {
   specialCharacters: [' ', '!','@','#','$','%','^','&','*','(',')','{','}','[',']','|',':',';',',','<','>','.','?','/','~','`','+','=','-','_']
   }
 
-var characterSetsList = [characterSets.alphabet, characterSets.numbers, characterSets.specialCharacters];
-
-var randomNumber = function(min, max) {
-  var value = Math.floor((Math.random() * (max-min+1)) + min);
-
-  return value;
-}
-
-var randomSet = function() {
-  var max = characterSetsList.length - 1;
-  return characterSetsList[randomNumber(0, max)];
-}
-
-var randomCharacter = function() {
-  set = randomSet()
-  setLength = set.length - 1
-  return set[randomNumber(0,setLength)]
-}
-
-var ensureCharacterType = function() {
-  alert('Please Confirm Character Types');
-  characterTypes.getCharacterTypes();
-  if (!characterTypes.uppercase && !characterTypes.lowercase && !characterTypes.numeric && !characterTypes.specialCharacters) {
-      alert("At least one character type must be selected to proceed! Please try again.")
-      characterTypes.getCharacterTypes();
-  } 
-}
-
-var generatePassword = function(length) {
-  for (i=0; i<length; i++) {
+var random = {
+  set: '',
+  setAndCharacter: '',
+  getRandomSet: function(){
+  this.set = randomSet()
+  },
+  getRandomSetAndCharacter: function(){
+    this.setAndCharacter = randomSetAndCharacter()
   }
 }
 
-// Write password to the #password input
-
-function writePassword() {
-  var length = getPasswordLength();
-  length = parseInt(length);
-  ensureCharacterType();
-  var password = generatePassword(length);
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
+var characterSetsList = [characterSets.alphabet, characterSets.numbers, characterSets.specialCharacters]
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
