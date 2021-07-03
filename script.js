@@ -18,40 +18,25 @@ var getPasswordLength = function() {
 
 var getUppercase = function() {
   
-  var uppercase = prompt("Uppercase letters included? Enter 'Yes' or 'No'")
-  uppercase = uppercase.toLowerCase();
-
-  if (uppercase === 'yes') {
+  var uppercase = confirm("Uppercase letters included? Select 'Ok' for yes.");
+  if (uppercase) {
     return true;
   }
+  return false;
 
-  else if (uppercase === 'no') {
-    return false;
-  }
-
-  else {
-    alert("You need to provide a valid answer! Please try again.");
-    return getUppercase();
-}
 }
 
 var getLowercase = function() {
   
-  var lowercase = prompt("Lowercase letters included? Enter 'Yes' or 'No'")
-  lowercase = lowercase.toLowerCase();
+  var lowercase = confirm("Lowercase letters included? Select 'Ok' for yes.");
 
-  if (lowercase === 'yes') {
+  if (lowercase) {
     return true;
   }
 
-  else if (lowercase === 'no') {
+  else if (!lowercase) {
     return false;
   }
-
-  else {
-    alert("You need to provide a valid answer! Please try again.");
-    return getLowercase();
-}
 }
 // Write password to the #password input
 
