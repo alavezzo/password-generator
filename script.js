@@ -80,18 +80,20 @@ getCharacterTypes: function(){
 }
 }
 
-  
-  
+var ensureCharacterType = function() {
+  alert('Please Confirm Character Types');
+  characterTypes.getCharacterTypes();
+  if (!characterTypes.uppercase && !characterTypes.lowercase && !characterTypes.numeric && !characterTypes.specialCharacters) {
+      alert("At least one character type must be selected to proceed! Please try again.")
+      characterTypes.getCharacterTypes();
+  } 
+}
 
 // Write password to the #password input
 
 function writePassword() {
   var length = getPasswordLength();
-  alert('Please Confirm Character Types');
-  characterTypes.getCharacterTypes();
-  if (!characterTypes.uppercase && !characterTypes.lowercase && !characterTypes.numeric && !characterTypes.specialCharacters) {
-      alert("At least one character type must be selected to proceed! Please try again.")
-  } 
+  ensureCharacterType();
 
   console.log(characterTypes.uppercase);
 
