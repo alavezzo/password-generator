@@ -38,6 +38,33 @@ var getLowercase = function() {
     return false;
   }
 }
+
+var getNumeric = function() {
+  
+  var numeric = confirm("Numeric Values included? Select 'Ok' for yes.");
+
+  if (numeric) {
+    return true;
+  }
+
+  else if (!numeric) {
+    return false;
+  }
+}
+
+var getSpecialCharacters = function() {
+  
+  var specialCharacters = confirm("Special Characters included? Select 'Ok' for yes.");
+
+  if (specialCharacters) {
+    return true;
+  }
+
+  else if (!specialCharacters) {
+    return false;
+  }
+}
+
 // Write password to the #password input
 
 function writePassword() {
@@ -46,6 +73,10 @@ function writePassword() {
   console.log(uppercase);
   var lowercase = getLowercase();
   console.log(lowercase);
+  var numeric = getNumeric();
+  console.log(numeric);
+  var specialCharacters = getSpecialCharacters();
+  console.log(specialCharacters);
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
