@@ -66,7 +66,6 @@ var getSpecialCharacters = function() {
   }
 }
 
-
 var characterTypes = {
   uppercase: '',
   lowercase: '',
@@ -80,6 +79,33 @@ getCharacterTypes: function(){
 }
 }
 
+var characterSets = {
+  alphabet: ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
+  
+  numbers: ['0','1','2','3','4','5','6','7','8','9'],
+  
+  specialCharacters: [' ', '!','@','#','$','%','^','&','*','(',')','{','}','[',']','|',':',';',',','<','>','.','?','/','~','`','+','=','-','_']
+  }
+
+var characterSetsList = [characterSets.alphabet, characterSets.numbers, characterSets.specialCharacters];
+
+var randomNumber = function(min, max) {
+  var value = Math.floor((Math.random() * (max-min+1)) + min);
+
+  return value;
+}
+
+var randomSet = function() {
+  var max = characterSetsList.length - 1;
+  return characterSetsList[randomNumber(0, max)];
+}
+
+var randomCharacter = function() {
+  set = randomSet()
+  setLength = set.length - 1
+  return set[randomNumber(0,setLength)]
+}
+
 var ensureCharacterType = function() {
   alert('Please Confirm Character Types');
   characterTypes.getCharacterTypes();
@@ -89,15 +115,18 @@ var ensureCharacterType = function() {
   } 
 }
 
+var generatePassword = function(length) {
+  for (i=0; i<length; i++) {
+  }
+}
+
 // Write password to the #password input
 
 function writePassword() {
   var length = getPasswordLength();
+  length = parseInt(length);
   ensureCharacterType();
-
-  console.log(characterTypes.uppercase);
-
-  var password = generatePassword();
+  var password = generatePassword(length);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
