@@ -18,7 +18,7 @@ var getPasswordLength = function() {
 
 var getUppercase = function() {
   
-  var uppercase = confirm("Uppercase letters included? Select 'Ok' for yes.");
+  var uppercase = confirm("Uppercase letters included? Select 'Ok' if yes. Selet 'Cancel' if no.");
   if (uppercase) {
     return true;
   }
@@ -28,7 +28,7 @@ var getUppercase = function() {
 
 var getLowercase = function() {
   
-  var lowercase = confirm("Lowercase letters included? Select 'Ok' for yes.");
+  var lowercase = confirm("Lowercase letters included? Select 'Ok' if yes. Select 'Cancel' if no.");
 
   if (lowercase) {
     return true;
@@ -42,7 +42,7 @@ var getLowercase = function() {
 
 var getNumeric = function() {
   
-  var numeric = confirm("Numeric Values included? Select 'Ok' for yes.");
+  var numeric = confirm("Numeric Values included? Select 'Ok' if yes. Select 'Cancel' if no.");
 
   if (numeric) {
     return true;
@@ -55,7 +55,7 @@ var getNumeric = function() {
 
 var getSpecialCharacters = function() {
   
-  var specialCharacters = confirm("Special Characters included? Select 'Ok' for yes.");
+  var specialCharacters = confirm("Special Characters included? Select 'Ok' if yes. Select 'Cancel' if no.");
 
   if (specialCharacters) {
     return true;
@@ -67,7 +67,7 @@ var getSpecialCharacters = function() {
 }
 
 var ensureCharacterType = function() {
-  alert('Please Confirm Character Types');
+  alert('Confirm Which Character Types You Would Like In Your Password');
   characterTypes.getCharacterTypes();
   if (!characterTypes.uppercase && !characterTypes.lowercase && !characterTypes.numeric && !characterTypes.specialCharacters) {
       alert("At least one character type must be selected to proceed! Please try again.")
