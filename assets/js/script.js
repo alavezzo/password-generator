@@ -67,7 +67,7 @@ var getSpecialCharacters = function() {
 }
 
 var ensureCharacterType = function() {
-  alert('Confirm Which Character Types You Would Like In Your Password');
+  alert('Choose the character types you wish to include in your randomly generated password');
   characterTypes.getCharacterTypes();
   if (!characterTypes.uppercase && !characterTypes.lowercase && !characterTypes.numeric && !characterTypes.specialCharacters) {
       alert("At least one character type must be selected to proceed! Please try again.")
